@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add Collection</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<h1>Add new collection</h1>
+	<div class= "col-md-4">
+	<form th:object="${collection}" th:action=@{savecollection} action="#" method ="post">
+	<label for="customerlist">Customer</label>
+	<select id = "customerlist" th:field="*{customer}" class="form-control">
+		<option th:each="customer: ${customers}" th:value="${customer.customerid}" th:text="${customer.firstname}"></option>
+	</select>
+	<div style="clear: both; display: block; height: 10px;"></div>
+	<label for ="collectionname">Collection Name</label>
+	<input type="text" id="collectionname" th:field="*{collectionname}" class="form-control"/>
+	<div style="clear: both; display: block; height: 10px;"></div>
+		<label for ="description">Description</label>
+	<input type="text" id="description" th:field="*{collectiondescription}" class="form-control"/>
+	<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="cardlist">Card</label>
+	<select id = "cardlist" th:field="*{card}" class="form-control">
+		<option th:each="card: ${cards}" th:value="${card.cardid}" th:text="${card.cardname}"></option>
+	</select>
+	<div style="clear: both; display: block; height: 10px;"></div>
+	<input type="submit" class="btn btn-primary" value="Save collection"></input>
+	
+	</form>
+	</div>
+
+</body>
+</html>

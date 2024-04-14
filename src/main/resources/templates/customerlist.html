@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Customer List</title>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Collectors</h1>
+	<h3>Welcome <span sec:authentication="name"></span></h3>
+	<div class="col-md-4" style="padding:20px 0">
+	<form th:action="@{/logout}" method="post">
+	<input type="submit" value="Sign Out" class="btn btn-danger">
+	<a href ="/cardlist" class = "btn btn-primary">To Cardlist</a>
+	<a href ="/collectionlist" class = "btn btn-primary">To Collectionlist</a>
+	<p>
+	<table class="table table-striped">
+		<tr>
+			<th>Firstname</th>
+			<th>Surname</th>
+			<th>Email</th>
+			<th>Phonenumber</th>
+		</tr>
+		<tr th:each = "customer: ${customers}">
+			<td th:text="${customer.firstname}" ></td>
+			<td th:text="${customer.surname}" ></td>
+			<td th:text="${customer.email}" ></td>
+			<td th:text="${customer.number}" ></td>
+			<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/editcustomer/{id}(id=${customer.customerid})}" class = "btn btn-info">Edit</a></td>
+			<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/deletecustomer/{id}(id=${customer.customerid})}" class ="btn btn-danger">Delete</a></td>
+			</tr>
+		</table>
+		<a href ="/add" class = "btn btn-primary">Add Customer</a>
+</body>
+</html>

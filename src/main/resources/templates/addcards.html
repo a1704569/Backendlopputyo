@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add Card</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<h1>Add new card</h1>
+	<div class= "col-md-4">
+	<form th:object="${card}" th:action=@{savecard} action="#" method ="post">
+	<label for ="cardname">Card Name</label>
+	<input type="text" id="cardname" th:field="*{cardname}" class="form-control"/>
+	<div style="clear: both; display: block; height: 10px;"></div>
+		<label for ="description">Description</label>
+	<input type="text" id="description" th:field="*{description}" class="form-control"/>
+	<div style="clear: both; display: block; height: 10px;"></div>
+		<label for="raritylist">Rarity</label>
+	<select id = "raritylist" th:field="*{rarity}" class="form-control">
+		<option th:each="rarity: ${rarities}" th:value="${rarity.rarityid}" th:text="${rarity.rarityname}"></option>
+	</select>
+	<div style="clear: both; display: block; height: 10px;"></div>
+	<input type="submit" class="btn btn-primary" value="Save card"></input>
+	</form>
+	</div>
+
+</body>
+</html>
